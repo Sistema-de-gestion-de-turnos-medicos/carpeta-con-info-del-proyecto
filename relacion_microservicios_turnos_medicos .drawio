@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0">
+  <diagram id="arq-microservicios-eureka" name="Relacion Microservicios - Feign">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="950" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- LEYENDA -->
+        <mxCell id="leyenda_title" value="Leyenda" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="15" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda_infra" value="Infraestructura" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="40" y="38" width="140" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda_consumidores" value="Consumidores finales" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="190" y="38" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda_intermedios" value="Servicios intermedios" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="350" y="38" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda_apoyo" value="Servicios de apoyo" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="510" y="38" width="150" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="leyenda_base" value="Servicios base" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="670" y="38" width="140" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- EUREKA SERVER (infraestructura, arriba de todo) -->
+        <mxCell id="ms_eureka" value="ms-eureka&#10;(Service Discovery - 8761)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="80" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- API GATEWAY (infraestructura, debajo de eureka) -->
+        <mxCell id="ms_gateway" value="ms-gateway&#10;(API Gateway - 8090)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="160" width="220" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- NIVEL 3: CONSUMIDORES FINALES -->
+        <mxCell id="ms_pago" value="ms-pago" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="260" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_historial" value="ms-historial-medico" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="280" y="260" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_notif" value="ms-notificaciones" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="540" y="260" width="170" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- NIVEL 2: SERVICIOS INTERMEDIOS -->
+        <mxCell id="ms_turno" value="ms-turno" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="430" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_disp" value="ms-disponibilidad" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="430" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_pacientes" value="ms-pacientes" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="430" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- NIVEL 1: SERVICIOS DE APOYO -->
+        <mxCell id="ms_medicos" value="ms-medicos" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="600" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_auth" value="ms-auth" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="560" y="600" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- NIVEL 0: SERVICIOS BASE -->
+        <mxCell id="ms_especialidades" value="ms-especialidades" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="770" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ms_usuario" value="ms-usuario" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="770" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- ETIQUETAS DE NIVEL -->
+        <mxCell id="lbl_n4" value="Infraestructura" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="900" y="95" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_n3" value="Consumidores" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="900" y="275" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_n2" value="Intermedios" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="900" y="445" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_n1" value="Apoyo" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="900" y="615" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_n0" value="Base" style="text;html=1;align=right;verticalAlign=middle;fontSize=11;fontColor=#999999;" vertex="1" parent="1">
+          <mxGeometry x="900" y="785" width="150" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS DE REGISTRO EN EUREKA (todos los microservicios se registran) -->
+        <mxCell id="reg1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;strokeColor=#6c8ebf;startArrow=none;" edge="1" parent="1" source="ms_pago" target="ms_eureka">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="115" y="60"/></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;strokeColor=#6c8ebf;startArrow=none;" edge="1" parent="1" source="ms_historial" target="ms_eureka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="reg3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=open;dashed=1;strokeColor=#6c8ebf;startArrow=none;" edge="1" parent="1" source="ms_notif" target="ms_eureka">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points"><mxPoint x="625" y="60"/></Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="reg_label" value="Todos los microservicios se registran en ms-eureka" style="text;html=1;align=center;verticalAlign=middle;fontSize=10;fontColor=#6c8ebf;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="700" y="140" width="280" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-pago -> ms-pacientes, ms-turno -->
+        <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_pago" target="ms_pacientes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_pago" target="ms_turno">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-historial-medico -> ms-pacientes, ms-medicos -->
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_historial" target="ms_pacientes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_historial" target="ms_medicos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="365" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- FLECHAS: ms-notificaciones -> ms-pacientes, ms-medicos, ms-turno -->
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_notif" target="ms_pacientes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_notif" target="ms_medicos">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="540" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_notif" target="ms_turno">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="360" />
+              <mxPoint x="155" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- FLECHAS: ms-turno -> ms-medicos -->
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_turno" target="ms_medicos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-disponibilidad -> ms-medicos -->
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_disp" target="ms_medicos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-pacientes -> ms-usuario -->
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_pacientes" target="ms_usuario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-medicos -> ms-especialidades -->
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_medicos" target="ms_especialidades">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- FLECHAS: ms-auth -> ms-usuario -->
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;elbow=vertical;startArrow=none;" edge="1" parent="1" source="ms_auth" target="ms_usuario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- NOTA: nombre Feign inconsistente -->
+        <mxCell id="nota_inconsistencia" value="Nota: el FeignClient se declara como &quot;ms-usuarios&quot; (con s) en ms-auth y ms-pacientes,&#10;pero el microservicio real registrado en Eureka es &quot;ms-usuario&quot; (sin s)." style="text;html=1;align=left;verticalAlign=middle;fontSize=10;fontColor=#b85450;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="900" width="600" height="30" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+
+  <diagram id="rutas-gateway" name="Rutas del API Gateway">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="780" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Rutas configuradas en ms-gateway (puerto 8090)" style="text;html=1;align=left;verticalAlign=middle;fontSize=14;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="500" height="24" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g_postman" value="Cliente / Postman" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="160" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g_gateway" value="ms-gateway&#10;(API Gateway - 8090)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="200" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="g_eureka" value="ms-eureka&#10;(Service Discovery - 8761)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="e_lookup" value="Resuelve lb://" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=block;fontSize=10;" edge="1" parent="1" source="g_gateway" target="g_eureka">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_post_gw" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_postman" target="g_gateway">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- RUTEADOS (verde) -->
+        <mxCell id="ruteado_title" value="Microservicios CON ruta en el Gateway" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="60" y="260" width="400" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="r_usuario" value="ms-usuario&#10;/api/usuarios/** , /api/v2/usuarios/**" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="290" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r_auth" value="ms-auth&#10;/api/auth/** , /api/v2/auth/**" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="290" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r_pacientes" value="ms-pacientes&#10;/api/pacientes/** , /api/v2/pacientes/**" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="620" y="290" width="280" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r_medicos" value="ms-medicos&#10;/api/medicos/** , /api/v2/medicos/**" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="60" y="360" width="260" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r_especialidades" value="ms-especialidades&#10;/api/especialidades/** , /api/v2/especialidades/**" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="340" y="360" width="280" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_gw_usuario" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_gateway" target="r_usuario">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gw_auth" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_gateway" target="r_auth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gw_pacientes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_gateway" target="r_pacientes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gw_medicos" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_gateway" target="r_medicos">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_gw_especialidades" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;startArrow=none;" edge="1" parent="1" source="g_gateway" target="r_especialidades">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- SIN RUTA (rojo) -->
+        <mxCell id="sinruta_title" value="Microservicios SIN ruta en el Gateway (no expuestos)" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=1;fontColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="60" y="450" width="500" height="20" as="geometry" />
+        </mxCell>
+
+        <mxCell id="s_turno" value="ms-turno" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="480" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="s_pago" value="ms-pago" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="480" width="160" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="s_historial" value="ms-historial-medico" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="480" width="170" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="s_notif" value="ms-notificaciones" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="610" y="480" width="170" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="s_disp" value="ms-disponibilidad" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="800" y="480" width="170" height="44" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nota_sinruta" value="Estos 5 microservicios solo son accesibles directamente por su puerto&#10;(ej. localhost:8086, 8089...), no a través del Gateway en localhost:8090." style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontColor=#b85450;fontStyle=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="540" width="600" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
