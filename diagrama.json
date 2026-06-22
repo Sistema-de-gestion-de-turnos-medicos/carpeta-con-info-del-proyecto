@@ -1,0 +1,3351 @@
+{
+  "info": {
+    "name": "Sistema de Gestion Medica - Microservicios",
+    "description": "Coleccion para probar los microservicios (ms-usuario, ms-auth, ms-pacientes, ms-medicos, ms-especialidades, ms-turno, ms-historial-medico, ms-disponibilidad, ms-notificaciones, ms-pago) a traves del Gateway o directamente.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "79c96a93-a104-4dae-9b88-bad6ef81870b"
+  },
+  "item": [
+    {
+      "name": "Eureka",
+      "item": [
+        {
+          "name": "Dashboard Eureka",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{eureka_url}}/",
+              "host": [
+                "{{eureka_url}}"
+              ],
+              "path": [
+                ""
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Apps registradas (JSON)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{eureka_url}}/eureka/apps",
+              "host": [
+                "{{eureka_url}}"
+              ],
+              "path": [
+                "eureka",
+                "apps"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "Servidor de descubrimiento de servicios"
+    },
+    {
+      "name": "MS-USUARIO (via Gateway, puerto 8080)",
+      "item": [
+        {
+          "name": "Listar usuarios (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuario_url}}/api/usuarios",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear usuario (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuario_url}}/api/usuarios",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "usuarios"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan Perez\",\n  \"email\": \"juan.perez@mail.com\",\n  \"password\": \"123456\",\n  \"rol\": \"PACIENTE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar usuario por email (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuario_url}}/api/usuarios/email/{{email}}",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "usuarios",
+                "email",
+                "{{email}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar usuarios (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuario_url}}/api/v2/usuarios",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "usuarios"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear usuario (V2 HAL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{usuario_url}}/api/v2/usuarios",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "usuarios"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Juan Perez\",\n  \"email\": \"juan.perez@mail.com\",\n  \"password\": \"123456\",\n  \"rol\": \"PACIENTE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar usuario por email (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{usuario_url}}/api/v2/usuarios/email/{{email}}",
+              "host": [
+                "{{usuario_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "usuarios",
+                "email",
+                "{{email}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Gestion de usuarios"
+    },
+    {
+      "name": "MS-AUTH (puerto 8081)",
+      "item": [
+        {
+          "name": "Login (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{auth_url}}/api/auth/login",
+              "host": [
+                "{{auth_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"juan.perez@mail.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login (V2 HAL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{auth_url}}/api/v2/auth/login",
+              "host": [
+                "{{auth_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"juan.perez@mail.com\",\n  \"password\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ],
+      "description": "Autenticacion y login"
+    },
+    {
+      "name": "MS-PACIENTES (puerto 8082)",
+      "item": [
+        {
+          "name": "Listar pacientes (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/pacientes",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener paciente por ID (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/pacientes/{{id}}",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear paciente (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pacientes_url}}/api/pacientes",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "pacientes"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Maria\",\n  \"apellidos\": \"Gomez\",\n  \"dni\": \"12345678\",\n  \"telefono\": \"987654321\",\n  \"direccion\": \"Av. Siempre Viva 123\",\n  \"usuarioId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar paciente (V1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/pacientes/{{id}}",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "pacientes",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pacientes (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/v2/pacientes",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "pacientes"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener paciente por ID (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/v2/pacientes/{{id}}",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "pacientes",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear paciente (V2 HAL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{pacientes_url}}/api/v2/pacientes",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "pacientes"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Maria\",\n  \"apellidos\": \"Gomez\",\n  \"dni\": \"12345678\",\n  \"telefono\": \"987654321\",\n  \"direccion\": \"Av. Siempre Viva 123\",\n  \"usuarioId\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar paciente (V2 HAL)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{pacientes_url}}/api/v2/pacientes/{{id}}",
+              "host": [
+                "{{pacientes_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "pacientes",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Gestion de pacientes"
+    },
+    {
+      "name": "MS-MEDICOS (puerto 8083)",
+      "item": [
+        {
+          "name": "Listar medicos (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/medicos",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "medicos"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener medico por ID (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/medicos/{{id}}",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "medicos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear medico (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{medicos_url}}/api/medicos",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "medicos"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Carlos\",\n  \"apellidos\": \"Ramirez\",\n  \"cmp\": \"CMP12345\",\n  \"especialidadId\": 1,\n  \"horario\": \"08:00-14:00\",\n  \"disponible\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar medico (V1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/medicos/{{id}}",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "medicos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar medicos (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/v2/medicos",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "medicos"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener medico por ID (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/v2/medicos/{{id}}",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "medicos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear medico (V2 HAL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{medicos_url}}/api/v2/medicos",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "medicos"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombres\": \"Carlos\",\n  \"apellidos\": \"Ramirez\",\n  \"cmp\": \"CMP12345\",\n  \"especialidadId\": 1,\n  \"horario\": \"08:00-14:00\",\n  \"disponible\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar medico (V2 HAL)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{medicos_url}}/api/v2/medicos/{{id}}",
+              "host": [
+                "{{medicos_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "medicos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Gestion de medicos"
+    },
+    {
+      "name": "MS-ESPECIALIDADES (puerto 8084)",
+      "item": [
+        {
+          "name": "Listar especialidades (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/especialidades",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "especialidades"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener especialidad por ID (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/especialidades/{{id}}",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "especialidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear especialidad (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{especialidades_url}}/api/especialidades",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "especialidades"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Cardiologia\",\n  \"descripcion\": \"Especialidad del corazon y sistema circulatorio\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar especialidad (V1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/especialidades/{{id}}",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "especialidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar especialidades (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/v2/especialidades",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "especialidades"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener especialidad por ID (V2 HAL)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/v2/especialidades/{{id}}",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "especialidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear especialidad (V2 HAL)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{especialidades_url}}/api/v2/especialidades",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "especialidades"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Cardiologia\",\n  \"descripcion\": \"Especialidad del corazon y sistema circulatorio\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar especialidad (V2 HAL)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{especialidades_url}}/api/v2/especialidades/{{id}}",
+              "host": [
+                "{{especialidades_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "especialidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Gestion de especialidades"
+    },
+    {
+      "name": "MS-HISTORIAL-MEDICO (puerto 8085)",
+      "item": [
+        {
+          "name": "Historial Medico",
+          "item": [
+            {
+              "name": "Crear historial",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pacienteId\": 1,\n  \"medicoId\": 1,\n  \"turnoId\": 1,\n  \"diagnostico\": \"Hipertension leve\",\n  \"tratamiento\": \"Dieta baja en sodio\",\n  \"observaciones\": \"Control en 1 mes\",\n  \"medicamentos\": \"Losartan 50mg\",\n  \"fechaConsulta\": \"2026-06-20\",\n  \"proximaConsulta\": \"2026-07-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener historial por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/{{id}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por paciente",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/paciente/{{pacienteId}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "paciente",
+                    "{{pacienteId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por medico",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/medico/{{medicoId}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "medico",
+                    "{{medicoId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por turno",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/turno/{{turnoId}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "turno",
+                    "{{turnoId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por paciente y estado",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/paciente/{{pacienteId}}/estado/{{estado}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "paciente",
+                    "{{pacienteId}}",
+                    "estado",
+                    "{{estado}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por paciente en rango de fechas",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/paciente/{{pacienteId}}/rango?desde=2026-01-01&hasta=2026-12-31",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "paciente",
+                    "{{pacienteId}}",
+                    "rango"
+                  ],
+                  "query": [
+                    {
+                      "key": "desde",
+                      "value": "2026-01-01"
+                    },
+                    {
+                      "key": "hasta",
+                      "value": "2026-12-31"
+                    }
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar historial",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/{{id}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "{{id}}"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pacienteId\": 1,\n  \"medicoId\": 1,\n  \"turnoId\": 1,\n  \"diagnostico\": \"Hipertension leve\",\n  \"tratamiento\": \"Dieta baja en sodio\",\n  \"observaciones\": \"Control en 1 mes\",\n  \"medicamentos\": \"Losartan 50mg\",\n  \"fechaConsulta\": \"2026-06-20\",\n  \"proximaConsulta\": \"2026-07-20\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cambiar estado del historial",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/{{id}}/estado",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "{{id}}",
+                    "estado"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"estado\": \"CERRADO\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar historial",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/historial-medico/{{id}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "historial-medico",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        },
+        {
+          "name": "Adjuntos",
+          "item": [
+            {
+              "name": "Crear adjunto",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/adjuntos",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "adjuntos"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"historialId\": 1,\n  \"nombreArchivo\": \"analisis.pdf\",\n  \"urlArchivo\": \"https://storage.example.com/analisis.pdf\",\n  \"tipoArchivo\": \"application/pdf\",\n  \"tamanoBytes\": 204800\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar adjuntos por historial",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/adjuntos/historial/{{historialId}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "adjuntos",
+                    "historial",
+                    "{{historialId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar adjunto",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{historial_url}}/api/v1/adjuntos/{{id}}",
+                  "host": [
+                    "{{historial_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "adjuntos",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        }
+      ],
+      "description": "Historial medico y adjuntos"
+    },
+    {
+      "name": "MS-TURNO (puerto 8086)",
+      "item": [
+        {
+          "name": "Auth",
+          "item": [
+            {
+              "name": "Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/auth/login",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Registrar",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/auth/register",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "auth",
+                    "register"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"admin\",\n  \"email\": \"admin@mail.com\",\n  \"password\": \"123456\",\n  \"rol\": \"ADMIN\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        },
+        {
+          "name": "Turnos",
+          "item": [
+            {
+              "name": "Crear turno",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pacienteNombre\": \"Maria Gomez\",\n  \"pacienteDni\": \"12345678\",\n  \"pacienteEmail\": \"maria@mail.com\",\n  \"pacienteTelefono\": \"987654321\",\n  \"medicoId\": 1,\n  \"medicoNombre\": \"Carlos Ramirez\",\n  \"especialidad\": \"Cardiologia\",\n  \"fecha\": \"2026-07-01\",\n  \"hora\": \"09:00\",\n  \"observaciones\": \"Control de rutina\",\n  \"consultorio\": \"Consultorio 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Listar turnos",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener turno por ID",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/{{id}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por fecha",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/fecha/{{fecha}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "fecha",
+                    "{{fecha}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por medico y fecha",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/medico/{{medicoId}}/fecha/{{fecha}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "medico",
+                    "{{medicoId}}",
+                    "fecha",
+                    "{{fecha}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por DNI de paciente",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/paciente/{{dni}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "paciente",
+                    "{{dni}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por estado",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/estado/{{estado}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "estado",
+                    "{{estado}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por especialidad",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/especialidad/{{especialidad}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "especialidad",
+                    "{{especialidad}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Buscar turnos por rango de fechas",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/rango?desde=2026-06-01&hasta=2026-06-30",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "rango"
+                  ],
+                  "query": [
+                    {
+                      "key": "desde",
+                      "value": "2026-06-01"
+                    },
+                    {
+                      "key": "hasta",
+                      "value": "2026-06-30"
+                    }
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar turno",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/{{id}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "{{id}}"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pacienteNombre\": \"Maria Gomez\",\n  \"pacienteDni\": \"12345678\",\n  \"pacienteEmail\": \"maria@mail.com\",\n  \"pacienteTelefono\": \"987654321\",\n  \"medicoId\": 1,\n  \"medicoNombre\": \"Carlos Ramirez\",\n  \"especialidad\": \"Cardiologia\",\n  \"fecha\": \"2026-07-01\",\n  \"hora\": \"09:00\",\n  \"observaciones\": \"Control de rutina\",\n  \"consultorio\": \"Consultorio 3\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cambiar estado del turno",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/{{id}}/estado",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "{{id}}",
+                    "estado"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"estado\": \"CONFIRMADO\",\n  \"observaciones\": \"Confirmado por recepcion\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Cancelar turno",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/{{id}}/cancelar",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "{{id}}",
+                    "cancelar"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar turno",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{turno_url}}/api/turnos/{{id}}",
+                  "host": [
+                    "{{turno_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "turnos",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        }
+      ],
+      "description": "Gestion de turnos medicos"
+    },
+    {
+      "name": "MS-DISPONIBILIDAD (puerto 8087)",
+      "item": [
+        {
+          "name": "Listar disponibilidades (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar disponibilidades activas (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/activas",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "activas"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener disponibilidad por ID (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por medico (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/medico/{{medicoId}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "medico",
+                "{{medicoId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por dia (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/dia?diaSemana=LUNES",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "dia"
+              ],
+              "query": [
+                {
+                  "key": "diaSemana",
+                  "value": "LUNES"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por medico y dia (V1)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/medico/{{medicoId}}/dia?diaSemana=LUNES",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "medico",
+                "{{medicoId}}",
+                "dia"
+              ],
+              "query": [
+                {
+                  "key": "diaSemana",
+                  "value": "LUNES"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear disponibilidad (V1)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicoId\": 1,\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00\",\n  \"horaFin\": \"14:00\",\n  \"intervaloMinutos\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar disponibilidad (V1)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicoId\": 1,\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00\",\n  \"horaFin\": \"14:00\",\n  \"intervaloMinutos\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar disponibilidad (V1)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar disponibilidades (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar disponibilidades activas (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/activas",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "activas"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener disponibilidad por ID (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por medico (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/medico/{{medicoId}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "medico",
+                "{{medicoId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por dia (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/dia?diaSemana=LUNES",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "dia"
+              ],
+              "query": [
+                {
+                  "key": "diaSemana",
+                  "value": "LUNES"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar por medico y dia (V2)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/medico/{{medicoId}}/dia?diaSemana=LUNES",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "medico",
+                "{{medicoId}}",
+                "dia"
+              ],
+              "query": [
+                {
+                  "key": "diaSemana",
+                  "value": "LUNES"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Crear disponibilidad (V2)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicoId\": 1,\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00\",\n  \"horaFin\": \"14:00\",\n  \"intervaloMinutos\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar disponibilidad (V2)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"medicoId\": 1,\n  \"diaSemana\": \"LUNES\",\n  \"horaInicio\": \"08:00\",\n  \"horaFin\": \"14:00\",\n  \"intervaloMinutos\": 30\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar disponibilidad (V2)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{disponibilidad_url}}/api/v2/disponibilidades/{{id}}",
+              "host": [
+                "{{disponibilidad_url}}"
+              ],
+              "path": [
+                "api",
+                "v2",
+                "disponibilidades",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Disponibilidad de medicos"
+    },
+    {
+      "name": "MS-NOTIFICACIONES (puerto 8088)",
+      "item": [
+        {
+          "name": "Notificaciones (V1)",
+          "item": [
+            {
+              "name": "Listar notificaciones",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener notificacion por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por paciente",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/paciente/{{pacienteId}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "paciente",
+                    "{{pacienteId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por turno",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/turno/{{turnoId}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "turno",
+                    "{{turnoId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar pendientes",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/pendientes",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "pendientes"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Crear notificacion",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"turnoId\": 1,\n  \"pacienteId\": 1,\n  \"medicoId\": 1,\n  \"tipo\": \"RECORDATORIO_TURNO\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar como enviada",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/{{id}}/enviada",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "{{id}}",
+                    "enviada"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar como fallida",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/{{id}}/fallida",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "{{id}}",
+                    "fallida"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar notificacion",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/notificaciones/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "notificaciones",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        },
+        {
+          "name": "Notificaciones (V2)",
+          "item": [
+            {
+              "name": "Listar notificaciones",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener notificacion por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por paciente",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/paciente/{{pacienteId}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "paciente",
+                    "{{pacienteId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar por turno",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/turno/{{turnoId}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "turno",
+                    "{{turnoId}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar pendientes",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/pendientes",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "pendientes"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Crear notificacion",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"turnoId\": 1,\n  \"pacienteId\": 1,\n  \"medicoId\": 1,\n  \"tipo\": \"RECORDATORIO_TURNO\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar como enviada",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/{{id}}/enviada",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "{{id}}",
+                    "enviada"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Marcar como fallida",
+              "request": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/{{id}}/fallida",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "{{id}}",
+                    "fallida"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar notificacion",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/v2/notificaciones/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v2",
+                    "notificaciones",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        },
+        {
+          "name": "Plantillas",
+          "item": [
+            {
+              "name": "Listar plantillas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Listar plantillas activas",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas/activas",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas",
+                    "activas"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Obtener plantilla por ID",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            },
+            {
+              "name": "Crear plantilla",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tipo\": \"RECORDATORIO_TURNO\",\n  \"asunto\": \"Recordatorio de turno\",\n  \"cuerpo\": \"Estimado paciente, le recordamos su turno medico.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Actualizar plantilla",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas",
+                    "{{id}}"
+                  ]
+                },
+                "description": "",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tipo\": \"RECORDATORIO_TURNO\",\n  \"asunto\": \"Recordatorio de turno\",\n  \"cuerpo\": \"Estimado paciente, le recordamos su turno medico.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Eliminar plantilla",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{notificaciones_url}}/api/plantillas/{{id}}",
+                  "host": [
+                    "{{notificaciones_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "plantillas",
+                    "{{id}}"
+                  ]
+                },
+                "description": ""
+              },
+              "response": []
+            }
+          ],
+          "description": ""
+        }
+      ],
+      "description": "Notificaciones y plantillas"
+    },
+    {
+      "name": "MS-PAGO (puerto 8089)",
+      "item": [
+        {
+          "name": "Crear pago",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"turnoId\": 1,\n  \"pacienteId\": 1,\n  \"monto\": 150.5,\n  \"metodoPago\": \"TARJETA\",\n  \"descripcion\": \"Pago de consulta medica\",\n  \"referenciaTransaccion\": \"TXN-0001\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Obtener pago por ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Buscar por numero de comprobante",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/comprobante/{{numeroComprobante}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "comprobante",
+                "{{numeroComprobante}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos por paciente",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/paciente/{{pacienteId}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "paciente",
+                "{{pacienteId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos por turno",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/turno/{{turnoId}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "turno",
+                "{{turnoId}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos por estado",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/estado/{{estado}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "estado",
+                "{{estado}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos por metodo de pago",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/metodo/{{metodoPago}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "metodo",
+                "{{metodoPago}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Listar pagos por rango de fechas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/rango?desde=2026-06-01T00:00:00&hasta=2026-06-30T23:59:59",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "rango"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "2026-06-01T00:00:00"
+                },
+                {
+                  "key": "hasta",
+                  "value": "2026-06-30T23:59:59"
+                }
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Actualizar estado del pago",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}/estado",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}",
+                "estado"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"APROBADO\",\n  \"motivo\": \"Pago validado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aprobar pago",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}/aprobar",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}",
+                "aprobar"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Rechazar pago",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}/rechazar",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}",
+                "rechazar"
+              ]
+            },
+            "description": "",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"APROBADO\",\n  \"motivo\": \"Pago validado\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Cancelar pago",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}/cancelar",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}",
+                "cancelar"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Reembolsar pago",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}/reembolsar",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}",
+                "reembolsar"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Eliminar pago",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/{{id}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "{{id}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Total por estado (estadisticas)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/estadisticas/total/{{estado}}",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "estadisticas",
+                "total",
+                "{{estado}}"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        },
+        {
+          "name": "Conteo de pagos (estadisticas)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{pago_url}}/api/v1/pagos/estadisticas/conteo",
+              "host": [
+                "{{pago_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pagos",
+                "estadisticas",
+                "conteo"
+              ]
+            },
+            "description": ""
+          },
+          "response": []
+        }
+      ],
+      "description": "Gestion de pagos"
+    }
+  ],
+  "variable": [
+    {
+      "key": "gateway_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "usuario_url",
+      "value": "http://localhost:8080"
+    },
+    {
+      "key": "auth_url",
+      "value": "http://localhost:8081"
+    },
+    {
+      "key": "pacientes_url",
+      "value": "http://localhost:8082"
+    },
+    {
+      "key": "medicos_url",
+      "value": "http://localhost:8083"
+    },
+    {
+      "key": "especialidades_url",
+      "value": "http://localhost:8084"
+    },
+    {
+      "key": "historial_url",
+      "value": "http://localhost:8085"
+    },
+    {
+      "key": "turno_url",
+      "value": "http://localhost:8086"
+    },
+    {
+      "key": "disponibilidad_url",
+      "value": "http://localhost:8087"
+    },
+    {
+      "key": "notificaciones_url",
+      "value": "http://localhost:8088"
+    },
+    {
+      "key": "pago_url",
+      "value": "http://localhost:8089"
+    },
+    {
+      "key": "eureka_url",
+      "value": "http://localhost:8761"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}
